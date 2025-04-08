@@ -1,10 +1,11 @@
 import React from 'react'
-import Navbar from './Components/Navbar/Navbar'
+import Navbar from '../../Admin/src/Components/Navbar/Navbar'
+import Sidebar from '../../Admin/src/Components/Sidebar/Sidebar'
 
 const App = () => {
   return (
     <div>
-      <Navbar/>
+  <Navbar />
       <hr />
       <div className="app-content">
         <Sidebar/>
