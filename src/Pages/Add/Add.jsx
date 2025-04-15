@@ -4,7 +4,17 @@ import { assets } from '../../assets/assets'
 const Add = () => {
 
 const [image,setImage]= useState(false)
-
+const [data,Setdata] = useState({
+  name:"",
+  description:"",
+  price:"",
+  category:"salad"
+})
+const onChangeHandler = (event)=>{
+    const name = event.target.name;
+    const value  = event.target.value;
+    Setdata(data=>({...data,[name]:value}))
+}
   return (
     <div className='add'>
       <form className="flex-col">
@@ -17,7 +27,7 @@ const [image,setImage]= useState(false)
         </div>
         <div className="add-product-name flex-col">
           <p>Product Name</p>
-          <input type="text" name='name' placeholder='Type Here' />
+          <input  type="text" name='name' placeholder='Type Here' />
         </div>
         <div className="add-product-description flex-col">
           <p>Product Description</p>
