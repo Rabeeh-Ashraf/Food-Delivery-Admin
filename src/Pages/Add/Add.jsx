@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './Add.css'
 import { assets } from '../../assets/assets'
 import axios from "axios"
+import { toast } from 'react-toastify'
 const Add = () => {
 const url ="http://localhost:4000";
 const [image,setImage]= useState(false)
@@ -36,9 +37,10 @@ const onSubmitHandler =async(event)=>{
         category:"salad"
       })
       setImage(false)
+      toast.success(response.data.message)
     }else{
-      console.log(error)
-    }
+      toast.error(response.data.message)  
+    }   
    
 }
   return (
