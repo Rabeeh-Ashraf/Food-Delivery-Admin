@@ -8,7 +8,7 @@ const List = () => {
 
     const fetchlist = async()=>{
     const response = await axios.get(`${url}/api/food/list`);
-    console.log(response.data);
+  
     
     if (response.data.success) {
       setList(response.data.data)
@@ -16,9 +16,22 @@ const List = () => {
       toast.error("error")
     }
   }
+
+    const removeFood = async (foodId)=>{
+     //calling responce api
+     const responce = await axios.post(`${url}/api/food/remove`,{id:foodId})
+     await fetchlist();
+     if (responce.data.success) {
+      toast.success(responce.data.message)
+     }else{
+      toast.error("error")
+     }
+      
+    }
     useEffect(( )=>{
       fetchlist()
     },[])
+
   return (
     <div className='list add flex-col'>
       <p>All Food List</p>
@@ -37,7 +50,7 @@ const List = () => {
                 <p>{item.name}</p>
                 <p>{item.category}</p>
                 <p>${item.price}</p>
-                <p>x</p>
+                <p onClick={()=>removeFood(item._id)} className='cursor'>x</p>
               </div>
             )
         })}
